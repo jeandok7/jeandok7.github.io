@@ -1,8 +1,12 @@
+html {
+    font-size: 16px;
+}
 body {
     margin: 0;
     padding: 0;
     background: #FFF;
     font-family: "helvetica";
+    font-size: 16px;
     font-weight: 400;
     color: #000000;
     overflow-x: hidden;
@@ -297,7 +301,7 @@ button:focus {
 }
 
 #bloc-1-hero h1 {
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 .navbar {
@@ -308,10 +312,9 @@ button:focus {
 .navbar-brand {
     height: auto;
     padding: 3px 15px;
-    font-size: 25px;
-    font-weight: normal;
+    font-size: 1.56rem;
     font-weight: 600;
-    line-height: 44px;
+    line-height: 2.75rem;
 }
 
 .navbar-brand img {
@@ -338,7 +341,7 @@ button:focus {
 .nav > li {
     float: left;
     margin-top: 4px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .navbar-nav .open .dropdown-menu > li > a {
@@ -489,11 +492,11 @@ button {
 }
 
 .icon-md {
-    font-size: 30px!important;
+    font-size: 1.875rem!important;
 }
 
 .icon-lg {
-    font-size: 60px!important;
+    font-size: 3.75rem!important;
 }
 
 .sm-shadow {
@@ -539,7 +542,7 @@ button {
 }
 
 .showScrollTop {
-    font-size: 14px;
+    font-size: 0.875rem;
     opacity: 1;
 }
 
@@ -552,7 +555,7 @@ a[data-lightbox] {
 a[data-lightbox]:hover::before {
     content: "+";
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial;
-    font-size: 32px;
+    font-size: 2rem;
     width: 50px;
     height: 50px;
     margin-left: -25px;
@@ -601,14 +604,14 @@ a[data-lightbox]:hover img {
 
 .close-lightbox {
     color: #FFF;
-    font-size: 30px;
+    font-size: 1.875rem;
     position: absolute;
     top: 20px;
     right: 20px;
     z-index: 20;
     background: rgba(0, 0, 0, .5);
     border: none;
-    line-height: 30px;
+    line-height: 1.875rem;
     padding: 0 9px 5px;
     opacity: 0.3;
 }
@@ -622,7 +625,7 @@ a[data-lightbox]:hover img {
 
 .next-lightbox,
 .prev-lightbox {
-    font-size: 20px;
+    font-size: 1.25rem;
     color: rgba(255, 255, 255, .9);
     background: rgba(0, 0, 0, .5);
     transition: all .2s ease-in-out;
@@ -666,6 +669,7 @@ div,
 span,
 blockquote {
     color: inherit !important;
+    font-size: inherit;
 }
 
 .container {
@@ -673,25 +677,21 @@ blockquote {
 }
 
 .hero-bloc-text {
-    font-size: 38px;
+    font-size: 2.375rem;
 }
 
 .hero-bloc-text-sub {
-    font-size: 36px;
+    font-size: 2.25rem;
 }
 
 .statement-bloc-text {
-    line-height: 26px;
+    line-height: 1.625rem;
     font-style: italic;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: center;
     font-weight: lighter;
     max-width: 520px;
     margin: auto auto auto auto;
-}
-
-p {
-    font-size: 11px;
 }
 
 .tight-width-whitespace {
@@ -700,7 +700,7 @@ p {
 }
 
 .h1 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: "Open Sans";
 }
 
@@ -709,7 +709,7 @@ p {
     color: #FFFFFF!important;
     text-transform: uppercase;
     padding: 12px 28px 12px 28px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
 }
 
@@ -719,12 +719,12 @@ p {
 }
 
 h2 {
-    font-size: 22px;
-    line-height: 1.4em;
+    font-size: 1.375rem;
+    line-height: 1.4rem;
 }
 
 h3 {
-    font-size: 15px;
+    font-size: 0.94rem;
     text-transform: uppercase;
     font-weight: 700;
     color: #333333!important;
