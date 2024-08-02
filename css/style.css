@@ -9,13 +9,21 @@ body {
 
 a,
 button {
+    cursor: pointer;
     transition: all .3s ease-in-out;
-    outline: none!important;
+    outline: 0!important;
+    outline-offset: 2px !important;
 }
 
 a:hover {
-    text-decoration: none;
-    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:hover,
+a:focus,
+button:hover,
+button:focus {
+    outline: 1px dashed #000000!important;
 }
 
 #page-loading-blocs-notifaction {
