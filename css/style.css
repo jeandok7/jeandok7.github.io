@@ -91,7 +91,7 @@ a:hover {
 }
 
 .texture-paper::before {
-    background: url("../img/texture-paper.png");
+    background: url("../img/bg-texture-papier.webp");
     background-size: 280px 280px;
 }
 
@@ -809,20 +809,40 @@ h4 {
     border-color: #364577!important;
 }
 
-.bg-dots-bg {
-    background-image: url("../img/dots-bg.png");
+.bg-dots {
+    background-image: url("../img/bg-dots.webp");
 }
 
-.bg-lines-h2-bg {
-    background-image: url("../img/lines-h2-bg.png");
+.bg-lines {
+    background-image: url("../img/bg-lines.webp");
 }
 
-.bg-banniere {
-    background-image: url("../img/agence-la-panthere.jpg");
+.bg-banniere-contact {
+    background-image: url("../img/bg-banniere-contact-800x600.webp");
 }
 
-.bg-presentation {
-    background-image: url("../img/image-de-presentation.bmp");
+.bg-banniere-presentation {
+    background-image: url("../img/bg-banniere-presentation-800x1000.webp");
+}
+
+@media only screen and (min-width: 768px) {
+    .bg-banniere-contact {
+        background-image: url("../img/bg-banniere-contact-1200x600.webp");
+    }
+
+    .bg-banniere-presentation {
+        background-image: url("../img/bg-banniere-presentation-1200x1000.webp");
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .bg-banniere-contact {
+        background-image: url("../img/bg-banniere-contact-1600x600.webp");
+    }
+
+    .bg-banniere-presentation {
+        background-image: url("../img/bg-banniere-presentation-1600x900.webp");
+    }
 }
 
 @media (max-width: 1024px) {

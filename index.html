@@ -35,7 +35,7 @@
 							<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-									<span class="sr-only">Ouvrir la navigation</span>
+									<span class="sr-only">Ouvrir/Fermer la navigation</span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
@@ -65,12 +65,12 @@
 		<main role="main">
 
 			<!-- Banniere principale -->
-			<div class="bloc bgc-dark-slate-blue bg-banniere d-bloc bg-t-edge bloc-bg-texture texture-paper b-parallax"
+			<div class="bloc bgc-dark-slate-blue bg-banniere-contact d-bloc bg-t-edge bloc-bg-texture texture-paper b-parallax"
 				 id="bloc-1-hero">
 				<div class="container bloc-lg">
 					<div class="row tight-width-whitespace">
 						<div class="col-sm-12">
-							<img alt="Agence La Panthère, agence web paris, création logo paris" class="center-block image-resize-mode" src="img/logo.png"
+							<img alt="" class="center-block image-resize-mode" src="img/logo-la-panthere-400x400.webp"
 								 width="100"/>
 							<h1 class="text-center hero-bloc-text tc-white ">
 								Agence La Panthère
@@ -89,9 +89,9 @@
 			<div class="bloc bgc-white l-bloc" id="bloc-2-services">
 				<div class="container bloc-md">
 					<div class="row">
-						<div class="col-sm-12 text-center">
-							<img alt="agence web, agence web paris, web design paris, stratégie web" src="img/title.png"/>
-						</div>
+						<p class="col-sm-12 text-center">
+							L'agence La Panthère est une <strong>agence de web design</strong> qui aide les entreprises à devenir attractives et visibles sur internet.
+						</p>
 					</div>
 					<div class="row voffset-lg med-width-whitespace">
 						<div class="col-sm-4">
@@ -133,9 +133,11 @@
 					</div>
 					<div class="row voffset-lg voffset">
 						<div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-							<img alt="agence web, agence web paris, web design paris, stratégie web"
-								 src="img/citation.png"/>
+							<blockquote>
+								"L'agence La Panthère est une excellente agence web ! Les web designers ont réussi à capturer l'essence de notre entreprise et à l'intégrer à notre site. Cela nous a aidé à doubler nos ventes en ligne à Lyon."
 
+							</blockquote>
+							<div>Maxime Guibard, PDG de À vos fourchettes</div>
 						</div>
 					</div>
 				</div>
@@ -143,7 +145,7 @@
 			<!-- Services agence END -->
 
 			<!-- Presentation agence -->
-			<div class="bloc tc-white bgc-atomic-tangerine bg-presentation d-bloc bloc-bg-texture texture-paper b-parallax"
+			<div class="bloc tc-white bgc-atomic-tangerine bg-banniere-presentation d-bloc bloc-bg-texture texture-paper b-parallax"
 				 id="bloc-3-what-i-do">
 				<div class="container bloc-lg">
 					<div class="row tight-width-whitespace black-background">
@@ -168,20 +170,22 @@
 			<!-- Presentation agence END -->
 
 			<!-- Portfolio agence -->
-			<div class="bloc bgc-white bg-lines-h2-bg bg-repeat l-bloc" id="bloc-4-portfolio">
+			<div class="bloc bgc-white bg-lines bg-repeat l-bloc" id="bloc-4-portfolio">
 				<div class="container bloc-lg">
 					<div class="row">
-						<div class="col-sm-12 text-center">
-							<img alt="agence web, agence web paris, web design paris, stratégie web" src="img/title2.png"/>
-						</div>
+						<h2 class="col-sm-12 text-center">
+							Nous travaillons avec beaucoup de clients, <br/>voici nos réalisations
+						</h2>
 					</div>
 					<div class="row tight-width-whitespace portfolio-row">
 						<div class="col-sm-6">
 							<a data-caption="Refonte d'un site web pour un journal local" data-frame="snapshot-lb" data-gallery-id="gallery-1"
-							   data-lightbox="img/1.jpg" href="#"><img
-									alt="paris web design logo agence web meilleure agence et refonte site web journal"
-									class="img-responsive portfolio-thumb"
-									src="img/1.jpg"/></a>
+							   data-lightbox="img/refonte-site-journal-local-400x400.webp" href="#">
+								<picture>
+									<source media="(min-width:650px)" srcset="img/refonte-site-journal-local-600x600.webp">
+									<img alt="Création d'identité visuelle" class="img-responsive portfolio-thumb" src="img/refonte-site-journal-local-400x400.webp" style="width:auto;">
+								</picture>
+							</a>
 							<h3 class="mg-md text-center">
 								Refonte d'un site web pour un journal local
 							</h3>
@@ -191,9 +195,12 @@
 						</div>
 						<div class="col-sm-6">
 							<a data-caption="Création d'un site web pour photographes" data-frame="snapshot-lb" data-gallery-id="gallery-1"
-							   data-lightbox="img/2.jpg" href="#"><img
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour photographes" class="img-responsive portfolio-thumb"
-									src="img/2.jpg"/></a>
+							   data-lightbox="img/creation-site-web-photographe-600x600.webp" href="#">
+								<picture>
+									<source media="(min-width:650px)" srcset="img/creation-site-web-photographe-600x600.webp">
+									<img alt="Création de plateforme web" class="img-responsive portfolio-thumb" src="img/creation-site-web-photographe-400x400.webp" style="width:auto;">
+								</picture>
+							</a>
 							<h3 class="mg-md text-center">
 								Création d'un site web pour photographes
 							</h3>
@@ -205,28 +212,32 @@
 					<div class="row tight-width-whitespace portfolio-row">
 						<div class="col-sm-6">
 							<a data-caption="Création d'un site internet pour un voyageur" data-frame="snapshot-lb" data-gallery-id="gallery-1"
-							   data-lightbox="img/3.bmp" href="#"><img
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour voyageur" class="img-responsive portfolio-thumb"
-									src="img/3.bmp"/></a>
+							   data-lightbox="img/creation-site-internet-voyageur-600x600.webp" href="#">
+								<picture>
+									<source media="(min-width:650px)" srcset="img/creation-site-internet-voyageur-600x600.webp">
+									<img alt="Illustration de site internet" class="img-responsive portfolio-thumb" src="img/creation-site-internet-voyageur-400x400.webp" style="width:auto;">
+								</picture>
+							</a>
 							<h3 class="mg-md text-center">
 								Création d'un site internet pour un voyageur
 							</h3>
 							<p class="text-center">
-								Nous avons élaboré un site internet et des illustrations pour sublimer les vidéos et les
-								articles de ce voyageur.
+								Nous avons élaboré un site internet et des illustrations pour sublimer les vidéos et les articles de ce voyageur.
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<a data-caption="Conception d'un site pour une agence de mariage" data-frame="snapshot-lb" data-gallery-id="gallery-1"
-							   data-lightbox="img/4.bmp" href="#"><img
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour agence de mariage" class="img-responsive portfolio-thumb"
-									src="img/4.bmp"/></a>
+							   data-lightbox="img/creation-site-web-agence-mariage-600x600.webp" href="#">
+								<picture>
+									<source media="(min-width:650px)" srcset="img/creation-site-web-agence-mariage-600x600.webp">
+									<img alt="Création de site internet" class="img-responsive portfolio-thumb" src="img/creation-site-web-agence-mariage-400x400.webp" style="width:auto;">
+								</picture>
+							</a>
 							<h3 class="mg-md text-center">
 								Conception d'un site pour une agence de mariage
 							</h3>
 							<p class="text-center">
-								Nous avons travaillé avec cette agence pour créer un site internet permettant la
-								présentation détaillée de leurs prestations.
+								Nous avons travaillé avec cette agence pour créer un site internet permettant la présentation détaillée de leurs prestations.
 							</p>
 						</div>
 					</div>
@@ -235,7 +246,7 @@
 			<!-- Portfolio agence END -->
 
 			<!-- Call to action -->
-			<div class="bloc bgc-dark-slate-blue bg-banniere d-bloc bloc-bg-texture texture-paper" id="bloc-5-cta">
+			<div class="bloc bgc-dark-slate-blue bg-banniere-contact d-bloc bloc-bg-texture texture-paper" id="bloc-5-cta">
 				<div class="container bloc-lg">
 					<div class="row">
 						<h2 class="mg-md text-center tc-white">
