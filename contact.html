@@ -13,7 +13,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js" integrity="sha512-qp27nuUylUgwBZJHsmm3W7klwuM5gke4prTvPok3X5zi50y3Mo8cgpeXegWWrdfuXyF2UdLWK/WCb5Mv7CKHcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="./js/jqBootstrapValidation.js"></script>
+	<script src="js/jqBootstrapValidation.min.js"></script>
 	<script src="./js/formHandler.js"></script>
     <title>Contact - La Panthère</title>
     
@@ -81,33 +81,37 @@
 				<div class="container bloc-lg">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6">
-							<form id="form_1" novalidate success-msg="Your message has been sent." fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
+							<form id="form_1" novalidate success-msg="Votre Message a bien été envoyé." fail-msg="Désolé, il semble que notre serveur de messagerie ne répond pas. Nous sommes désolés pour le désagrément !">
 								<div class="form-group">
 									<label for="name">
 										Nom
 									</label>
-									<input id="name" name="name" class="form-control" required />
+									<input id="name" name="name" class="form-control"
+										   required data-validation-required-message="Veuillez renseigner votre nom." />
 								</div>
 								<div class="form-group">
 									<label for="email">
 										Adresse email
 									</label>
-									<input id="email" name="email" class="form-control" type="email" required />
+									<input id="email" name="email" class="form-control" type="email"
+										   required data-validation-required-message="Veuillez renseigner votre email." />
 								</div>
 								<div class="form-group">
 									<label for="input_504">
 										Comment nous avez-vous connu ?
 									</label>
-									<input id="input_504" name="input_504" class="form-control" type="text" required />
+									<input id="input_504" name="input_504" class="form-control" type="text"
+										   required  data-validation-required-message="Veuillez répondre à la question : comment nous avez-vous connu ?" />
 								</div>
 								<div class="form-group">
 									<label for="message">
 										Brief de votre projet (Ajoutez autant de détails que nécessaire)<br>
 									</label>
-									<textarea id="message" name="message" class="form-control" rows="4" cols="50" required></textarea>
+									<textarea id="message" name="message" class="form-control" rows="4" cols="50"
+											  required data-validation-required-message="Veuillez nous donner un brief de votre projet."></textarea>
 								</div>
 								<button class="bloc-button btn btn-lg btn-block cta-hero btn-atomic-tangerine" type="submit">
-									Envoyer
+									Envoyer le message
 								</button>
 							</form>
 						</div>
