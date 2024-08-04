@@ -1051,7 +1051,7 @@ blockquote {
         margin-top: 30px;
     }
     form {
-        padding: 5px;
+        padding: 5px 10px;
     }
     .close-lightbox {
         display: inline-block;
