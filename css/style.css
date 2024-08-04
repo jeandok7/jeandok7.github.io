@@ -302,6 +302,7 @@ button:focus {
 
 #bloc-1-hero h1 {
     font-size: 2rem;
+    line-height: 2.75rem;
 }
 
 .navbar {
@@ -720,7 +721,7 @@ blockquote {
 
 h2 {
     font-size: 1.375rem;
-    line-height: 1.4rem;
+    line-height: 1.75rem;
     font-weight: 700;
 }
 
