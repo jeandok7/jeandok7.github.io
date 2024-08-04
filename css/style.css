@@ -547,6 +547,16 @@ button {
     opacity: 1;
 }
 
+.alert .close {
+    opacity: 0.75;
+}
+
+.alert .close:hover,
+.alert .close:focus{
+    opacity: 1;
+    color: #000000;
+}
+
 a[data-lightbox] {
     position: relative;
     display: block;
