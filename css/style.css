@@ -364,7 +364,7 @@ button:focus {
 }
 
 .navbar-toggle .icon-bar {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .75);
     width: 26px;
 }
 
@@ -523,7 +523,7 @@ button {
 }
 
 .form-control {
-    border-color: rgba(0, 0, 0, .1);
+    border-color: #777777;
     box-shadow: none;
 }
 
@@ -593,47 +593,35 @@ a[data-lightbox]:hover img {
     margin: 0 auto;
 }
 
-.lightbox-caption {
-    padding: 20px;
-    color: #FFF;
-    background: rgba(0, 0, 0, .5);
-    position: absolute;
-    left: 15px;
-    right: 15px;
-    bottom: 5px;
-}
-
 .close-lightbox {
-    color: #FFF;
     font-size: 1.875rem;
     position: absolute;
     top: 20px;
     right: 20px;
     z-index: 20;
-    background: rgba(0, 0, 0, .5);
+    color: rgba(255, 255, 255, .9) !important;
+    background: #000000;
     border: none;
     line-height: 1.875rem;
     padding: 0 9px 5px;
-    opacity: 0.3;
 }
 
 .close-lightbox:hover,
 .next-lightbox:hover,
 .prev-lightbox:hover {
-    opacity: 1.0;
-    color: #FFF;
+    background: rgba(255, 255, 255, .8);
+    color: #000000 !important;
 }
 
 .next-lightbox,
 .prev-lightbox {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, .9);
-    background: rgba(0, 0, 0, .5);
+    color: rgba(255, 255, 255, .9) !important;
+    background: #000000;
     transition: all .2s ease-in-out;
     position: absolute;
     top: 45%;
     z-index: 1;
-    opacity: 0.4;
 }
 
 .next-lightbox {
@@ -646,13 +634,8 @@ a[data-lightbox]:hover img {
     left: 25px;
 }
 
-.snapshot-lb .modal-body {
-    padding-bottom: 45px;
-}
-
 .snapshot-lb .lightbox-caption {
-    padding: 0;
-    color: rgba(0, 0, 0, .5);
+    padding: 15px 0 0;
     background: none;
 }
 
@@ -950,7 +933,7 @@ blockquote {
     }
     .navbar .nav {
         padding-top: 0;
-        border-top: 1px solid rgba(0, 0, 0, .2);
+        border-top: 1px solid rgba(0, 0, 0, .75);
         float: none!important;
     }
     .navbar.row {
@@ -965,7 +948,7 @@ blockquote {
     }
     .nav > li {
         margin-top: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, .1);
+        border-bottom: 1px solid rgba(0, 0, 0, .75);
         background: rgba(0, 0, 0, .05);
         text-align: left;
         padding-left: 15px;
