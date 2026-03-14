@@ -1,0 +1,68 @@
+{
+  "name": "design-system-vite7-storybook10",
+  "version": "1.0.0",
+  "description": "Design System complet avec Atomic Design, Vite 7 et Storybook 10",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
+  "main": "dist/lib/design-system-cardif.umd.js",
+  "module": "dist/lib/design-system-cardif.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/lib/design-system-cardif.es.js",
+      "require": "./dist/lib/design-system-cardif.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite --port 3000",
+    "postbuild": "cp scripts/server* dist/ && chmod +x dist/server*.command",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:demo": "vite build",
+    "build": "npm run build:lib && npm run build:demo",
+    "preview:lib": "vite preview --port 6001 --outDir dist/lib",
+    "preview:demo": "vite preview --port 6002 --outDir dist/demo",
+    "preview": "npm run preview:lib && npm run preview:demo",
+    "storybook": "storybook dev --port 6006",
+    "build:storybook": "storybook build -o dist/storybook",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint \"src/**/*.{js,mjs}\"",
+    "format": "prettier --write \"src/**/*.{js,scss,html}\"",
+    "build-tokens": "style-dictionary build --config style-dictionary.config.json"
+  },
+  "keywords": [
+    "design-system",
+    "atomic-design",
+    "vite",
+    "storybook",
+    "vanilla-js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@floating-ui/dom": "^1.6.14"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.15",
+    "@storybook/addon-essentials": "^8.6.15",
+    "@storybook/addon-interactions": "^8.6.15",
+    "@storybook/web-components-vite": "^8.6.15",
+    "@testing-library/dom": "^10.4.0",
+    "@vitest/coverage-v8": "^3.0.4",
+    "@vitest/ui": "^3.0.4",
+    "eslint": "^9.16.0",
+    "happy-dom": "^20.1.0",
+    "lightningcss": "^1.28.3",
+    "prettier": "^3.4.2",
+    "sass": "^1.82.0",
+    "storybook": "^8.6.15",
+    "style-dictionary": "^4.2.0",
+    "terser": "^5.44.1",
+    "vite": "^7.3.1",
+    "vite-plugin-compression": "^0.5.1",
+    "vitest": "^3.0.4"
+  }
+}

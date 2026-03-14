@@ -1,0 +1,156 @@
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const { exec } = require("child_process");
+
+const dist = path.join(__dirname, "./");
+const demoDir = path.join(dist, "demo");
+const storybookDir = path.join(dist, "storybook");
+
+const ports = { demo: 3030, storybook: 6006 };
+const runtimePorts = {
+  demo: null,
+  storybook: null,
+  home: null
+};
+
+const mime = {
+  ".html":"text/html",
+  ".js":"application/javascript",
+  ".mjs":"application/javascript",
+  ".css":"text/css",
+  ".json":"application/json",
+  ".svg":"image/svg+xml",
+  ".png":"image/png",
+  ".jpg":"image/jpeg",
+  ".woff":"font/woff",
+  ".woff2":"font/woff2"
+};
+
+function send(file,res){
+  fs.readFile(file,(e,data)=>{
+    if(e){res.writeHead(404);res.end("Not found");return;}
+    res.writeHead(200,{ "Content-Type": mime[path.extname(file)]||"application/octet-stream"});
+    res.end(data);
+  });
+}
+
+/* =========================
+   STORYBOOK ROUTE FIX
+========================= */
+function resolveStorybookPath(base,url){
+  const clean = url.split("?")[0];
+
+  if(clean === "/" || clean === "")
+    return path.join(base,"index.html");
+
+  if(clean === "/iframe")
+    return path.join(base,"iframe.html");
+
+  let file = path.join(base,clean);
+
+  if(fs.existsSync(file)) return file;
+
+  return null;
+}
+
+/* =========================
+   DEMO SPA ROUTE
+========================= */
+function resolveDemoPath(base,url){
+  const clean = url.split("?")[0];
+  let file = path.join(base,clean);
+
+  if(clean === "/" || !fs.existsSync(file))
+    file = path.join(base,"index.html");
+
+  return file;
+}
+
+function startServer(dir, port, type) {
+  const server = http.createServer((req, res) => {
+    const file =
+      type === "storybook"
+        ? resolveStorybookPath(dir, req.url)
+        : resolveDemoPath(dir, req.url);
+
+    if (!file) {
+      res.writeHead(404);
+      res.end("Not found");
+      return;
+    }
+
+    send(file, res);
+  });
+
+  server.on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+      startServer(dir, port + 1, type);
+    }
+  });
+
+  server.listen(port, () => {
+    runtimePorts[type] = port;
+    console.log(`${type} → http://localhost:${port}`);
+  });
+}
+
+function open(url){
+  const cmd =
+    process.platform==="darwin"?"open":
+    process.platform==="win32"?"start":
+    "xdg-open";
+  exec(cmd+" "+url);
+}
+
+/* =========================
+   HOME PAGE
+========================= */
+function startHome(port = 3003) {
+  const server = http.createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(`
+      <body style="font-family:Arial;text-align:center;margin-top:100px">
+        <h1>Design System Cardif</h1>
+
+        ${
+          runtimePorts.demo
+            ? `<p><a href="http://localhost:${runtimePorts.demo}" target="_blank">Open Demo</a></p>`
+            : ""
+        }
+
+        ${
+          runtimePorts.storybook
+            ? `<p><a href="http://localhost:${runtimePorts.storybook}" target="_blank">Open Storybook</a></p>`
+            : ""
+        }
+
+      </body>
+    `);
+  });
+
+  server.on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+      startHome(port + 1);
+    }
+  });
+
+  server.listen(port, () => {
+    runtimePorts.home = port;
+    const url = `http://localhost:${port}`;
+    console.log(`home → ${url}`);
+    open(url);
+  });
+}
+
+/* ========================= */
+
+if (fs.existsSync(demoDir)) {
+  startServer(demoDir, ports.demo, "demo");
+}
+
+if (fs.existsSync(storybookDir)) {
+  startServer(storybookDir, ports.storybook, "storybook");
+}
+
+startHome();
