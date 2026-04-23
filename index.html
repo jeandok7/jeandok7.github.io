@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo - Composant Tab ES Module</title>
+    <link rel="stylesheet" href="../dist/ds-tabs.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: #f4f7f9;
+        }
+        .demo-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1f2937; }
+        .controls { margin-bottom: 1rem; }
+        button.api-btn {
+            padding: 0.5rem 1rem;
+            background: #005fcc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.api-btn:hover { background: #004ba3; }
+        
+        /* Styles pour le contenu des panels */
+        .ds-tabs__panel h2 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <h1>Démo Composant Tab</h1>
+    <p>Ce composant respecte le RGAA 4.1, utilise des ES Modules et un MutationObserver pour l'auto-initialisation.</p>
+
+    <div class="demo-container">
+        <div class="controls">
+            <button class="api-btn" onclick="addTab()">Ajouter dynamiquement un composant</button>
+        </div>
+
+        <!-- Composant Tab -->
+        <div class="ds-tabs" data-ds-toggle="ds-tab" id="myTabs">
+            <div class="ds-tabs__header">
+                <button class="ds-tabs__scroll-btn ds-tabs__scroll-btn--prev" type="button" aria-label="Précédent" data-ds-tabs-scroll="prev" hidden>
+                    &lt;
+                </button>
+                <div class="ds-tabs__tablist-wrapper">
+                    <div class="ds-tabs__tablist" role="tablist" aria-label="Exemple de navigation">
+                        <button class="ds-tabs__tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">
+                            Général
+                        </button>
+                        <button class="ds-tabs__tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">
+                            Accessibilité
+                        </button>
+                        <button class="ds-tabs__tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">
+                            Performance
+                        </button>
+                        <button class="ds-tabs__tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false">
+                            Sécurité
+                        </button>
+                        <button class="ds-tabs__tab" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false">
+                            Déploiement
+                        </button>
+                        <button class="ds-tabs__tab" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false">
+                            Monitoring
+                        </button>
+                    </div>
+                </div>
+                <button class="ds-tabs__scroll-btn ds-tabs__scroll-btn--next" type="button" aria-label="Suivant" data-ds-tabs-scroll="next" hidden>
+                    &gt;
+                </button>
+            </div>
+
+            <div class="ds-tabs__panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+                <h2>Contenu Général</h2>
+                <p>Bienvenue dans l'onglet général. Ce composant est conçu pour être hautement accessible et performant.</p>
+            </div>
+            <div class="ds-tabs__panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+                <h2>Accessibilité (RGAA 4.1)</h2>
+                <p>Le composant gère le focus, les attributs ARIA et la navigation au clavier (flèches, Home, End).</p>
+            </div>
+            <div class="ds-tabs__panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+                <h2>Performance</h2>
+                <p>Utilisation de Vanilla JS pur, sans dépendances lourdes. Le MutationObserver assure une initialisation efficace.</p>
+            </div>
+            <div class="ds-tabs__panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+                <h2>Sécurité</h2>
+                <p>Le code suit les meilleures pratiques de développement sécurisé.</p>
+            </div>
+            <div class="ds-tabs__panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5" hidden>
+                <h2>Déploiement</h2>
+                <p>Facile à intégrer dans n'importe quel projet via ES Modules.</p>
+            </div>
+            <div class="ds-tabs__panel" id="panel-6" role="tabpanel" aria-labelledby="tab-6" hidden>
+                <h2>Monitoring</h2>
+                <p>Suivez l'utilisation de vos onglets grâce aux événements personnalisés.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="dynamic-container" style="margin-top: 2rem;"></div>
+
+    <script type="module">
+        import { DsTabs } from '../src/ds-tabs.js';
+        
+        // Exemple d'utilisation de l'API publique
+        const tabsEl = document.getElementById('myTabs');
+        tabsEl.addEventListener('ds-tab-change', (e) => {
+            console.log('Onglet changé :', e.detail);
+        });
+
+        window.addTab = function() {
+            const container = document.getElementById('dynamic-container');
+            const newTabs = document.createElement('div');
+            newTabs.className = 'ds-tabs';
+            newTabs.setAttribute('data-ds-toggle', 'ds-tab');
+            newTabs.innerHTML = `
+                <div class="ds-tabs__header">
+                    <div class="ds-tabs__tablist-wrapper">
+                        <div class="ds-tabs__tablist" role="tablist">
+                            <button class="ds-tabs__tab" role="tab" id="dyn-tab-1" aria-controls="dyn-panel-1" aria-selected="true">Dynamique 1</button>
+                            <button class="ds-tabs__tab" role="tab" id="dyn-tab-2" aria-controls="dyn-panel-2" aria-selected="false">Dynamique 2</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ds-tabs__panel" id="dyn-panel-1" role="tabpanel" aria-labelledby="dyn-tab-1">Contenu dynamique 1</div>
+                <div class="ds-tabs__panel" id="dyn-panel-2" role="tabpanel" aria-labelledby="dyn-tab-2" hidden>Contenu dynamique 2</div>
+            `;
+            container.appendChild(newTabs);
+            // Le MutationObserver va l'initialiser automatiquement !
+        };
+    </script>
+</body>
+</html>

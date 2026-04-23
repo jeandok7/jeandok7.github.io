@@ -1,0 +1,31 @@
+// Tokens de design pour le composant Tab
+$ds-tabs-color-border: var(--ds-tabs-color-border, #d0d7de);
+$ds-tabs-color-bg: var(--ds-tabs-color-bg, #ffffff);
+$ds-tabs-color-surface: var(--ds-tabs-color-surface, #f8fafc);
+$ds-tabs-color-text: var(--ds-tabs-color-text, #1f2937);
+$ds-tabs-color-text-muted: var(--ds-tabs-color-text-muted, #4b5563);
+$ds-tabs-color-primary: var(--ds-tabs-color-primary, #005fcc);
+$ds-tabs-color-primary-contrast: var(--ds-tabs-color-primary-contrast, #ffffff);
+$ds-tabs-color-hover: var(--ds-tabs-color-hover, #eef4ff);
+$ds-tabs-color-focus: var(--ds-tabs-color-focus, #0a76f6);
+
+$ds-tabs-radius-sm: var(--ds-tabs-radius-sm, 0.375rem);
+$ds-tabs-radius-md: var(--ds-tabs-radius-md, 0.5rem);
+$ds-tabs-radius-lg: var(--ds-tabs-radius-lg, 0.875rem);
+
+$ds-tabs-spacing-1: var(--ds-tabs-spacing-1, 0.25rem);
+$ds-tabs-spacing-2: var(--ds-tabs-spacing-2, 0.5rem);
+$ds-tabs-spacing-3: var(--ds-tabs-spacing-3, 0.75rem);
+$ds-tabs-spacing-4: var(--ds-tabs-spacing-4, 1rem);
+$ds-tabs-spacing-5: var(--ds-tabs-spacing-5, 1.25rem);
+$ds-tabs-spacing-6: var(--ds-tabs-spacing-6, 1.5rem);
+
+$ds-tabs-font-size-sm: var(--ds-tabs-font-size-sm, 0.875rem);
+$ds-tabs-font-size-md: var(--ds-tabs-font-size-md, 1rem);
+$ds-tabs-font-size-lg: var(--ds-tabs-font-size-lg, 1.125rem);
+
+$ds-tabs-border-width: var(--ds-tabs-border-width, 1px);
+$ds-tabs-focus-ring-width: var(--ds-tabs-focus-ring-width, 3px);
+$ds-tabs-scroll-btn-size: var(--ds-tabs-scroll-btn-size, 2.5rem);
+$ds-tabs-tab-min-height: var(--ds-tabs-tab-min-height, 2.75rem);
+$ds-tabs-panel-padding: var(--ds-tabs-panel-padding, 1rem);

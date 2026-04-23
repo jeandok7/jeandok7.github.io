@@ -1,0 +1,128 @@
+:root {
+  --ds-tabs-color-border: #d0d7de;
+  --ds-tabs-color-bg: #ffffff;
+  --ds-tabs-color-surface: #f8fafc;
+  --ds-tabs-color-text: #1f2937;
+  --ds-tabs-color-text-muted: #4b5563;
+  --ds-tabs-color-primary: #005fcc;
+  --ds-tabs-color-primary-contrast: #ffffff;
+  --ds-tabs-color-hover: #eef4ff;
+  --ds-tabs-color-focus: #0a76f6;
+  --ds-tabs-radius-sm: 0.375rem;
+  --ds-tabs-radius-md: 0.5rem;
+  --ds-tabs-radius-lg: 0.875rem;
+  --ds-tabs-spacing-1: 0.25rem;
+  --ds-tabs-spacing-2: 0.5rem;
+  --ds-tabs-spacing-3: 0.75rem;
+  --ds-tabs-spacing-4: 1rem;
+  --ds-tabs-spacing-5: 1.25rem;
+  --ds-tabs-spacing-6: 1.5rem;
+  --ds-tabs-font-size-sm: 0.875rem;
+  --ds-tabs-font-size-md: 1rem;
+  --ds-tabs-font-size-lg: 1.125rem;
+  --ds-tabs-border-width: 1px;
+  --ds-tabs-focus-ring-width: 3px;
+  --ds-tabs-scroll-btn-size: 2.5rem;
+  --ds-tabs-tab-min-height: 2.75rem;
+  --ds-tabs-panel-padding: 1rem;
+  --ds-tabs-scroll-offset: 200px;
+}
+
+.ds-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--ds-tabs-color-text, #1f2937);
+}
+.ds-tabs__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: var(--ds-tabs-border-width, 1px) solid var(--ds-tabs-color-border, #d0d7de);
+  background-color: var(--ds-tabs-color-bg, #ffffff);
+}
+.ds-tabs__tablist-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.ds-tabs__tablist {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.ds-tabs__tablist::-webkit-scrollbar {
+  display: none;
+}
+.ds-tabs__tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--ds-tabs-tab-min-height, 2.75rem);
+  padding: 0 var(--ds-tabs-spacing-4, 1rem);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--ds-tabs-color-text-muted, #4b5563);
+  font-size: var(--ds-tabs-font-size-md, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  outline: none;
+}
+.ds-tabs__tab:hover {
+  background-color: var(--ds-tabs-color-hover, #eef4ff);
+  color: var(--ds-tabs-color-text, #1f2937);
+}
+.ds-tabs__tab:focus-visible {
+  box-shadow: inset 0 0 0 var(--ds-tabs-focus-ring-width, 3px) var(--ds-tabs-color-focus, #0a76f6);
+}
+.ds-tabs__tab--selected {
+  color: var(--ds-tabs-color-primary, #005fcc);
+  border-bottom-color: var(--ds-tabs-color-primary, #005fcc);
+}
+.ds-tabs__scroll-btn {
+  flex: 0 0 var(--ds-tabs-scroll-btn-size, 2.5rem);
+  height: var(--ds-tabs-scroll-btn-size, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ds-tabs-color-bg, #ffffff);
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  color: var(--ds-tabs-color-primary, #005fcc);
+  transition: opacity 0.2s;
+}
+.ds-tabs__scroll-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.ds-tabs__scroll-btn[hidden] {
+  display: none;
+}
+.ds-tabs__scroll-btn--prev {
+  border-right: var(--ds-tabs-border-width, 1px) solid var(--ds-tabs-color-border, #d0d7de);
+}
+.ds-tabs__scroll-btn--next {
+  border-left: var(--ds-tabs-border-width, 1px) solid var(--ds-tabs-color-border, #d0d7de);
+}
+.ds-tabs__panel {
+  padding: var(--ds-tabs-panel-padding, 1rem);
+  background-color: var(--ds-tabs-color-bg, #ffffff);
+  outline: none;
+}
+.ds-tabs__panel:focus-visible {
+  box-shadow: inset 0 0 0 var(--ds-tabs-focus-ring-width, 3px) var(--ds-tabs-color-focus, #0a76f6);
+}
+.ds-tabs__panel[hidden] {
+  display: none;
+}
+
+/*# sourceMappingURL=ds-tabs.css.map */
