@@ -3,139 +3,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Démo - Composant Tab ES Module</title>
-    <link rel="stylesheet" href="../dist/ds-tabs.css">
+    <title>Démo - Composant Modal ES Module (RGAA 4.1)</title>
+    <link rel="stylesheet" href="../dist/ds-modal.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.5;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            background-color: #f4f7f9;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
         }
-        .demo-container {
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #005fcc;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .demo-card {
             background: white;
+            border-radius: 0.875rem;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        h1 { color: #1f2937; }
-        .controls { margin-bottom: 1rem; }
-        button.api-btn {
-            padding: 0.5rem 1rem;
-            background: #005fcc;
+
+        .demo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .demo-card p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.625rem 1.25rem;
+            background-color: #005fcc;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            outline: none;
         }
-        button.api-btn:hover { background: #004ba3; }
-        
-        /* Styles pour le contenu des panels */
-        .ds-tabs__panel h2 { margin-top: 0; }
+
+        .btn:hover {
+            background-color: #004ba3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 95, 204, 0.3);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn:focus-visible {
+            box-shadow: 0 0 0 3px #0a76f6;
+        }
+
+        .btn--secondary {
+            background-color: #f8fafc;
+            color: #1f2937;
+            border: 1px solid #d0d7de;
+        }
+
+        .btn--secondary:hover {
+            background-color: #eef4ff;
+            border-color: #005fcc;
+            color: #005fcc;
+        }
+
+        .features {
+            background: white;
+            border-radius: 0.875rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .features h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eef4ff;
+            border-radius: 50%;
+            color: #005fcc;
+            font-weight: bold;
+        }
+
+        .feature-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: #1f2937;
+        }
+
+        .feature-content p {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .code-section {
+            background: white;
+            border-radius: 0.875rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .code-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        pre {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Modales */
+        .ds-modal {
+            &__dialog {
+                min-width: 300px;
+            }
+
+            &__body {
+                max-height: 400px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+
+        .info-box {
+            background-color: #eef4ff;
+            border-left: 4px solid #005fcc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .info-box strong {
+            color: #005fcc;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Démo Composant Tab</h1>
-    <p>Ce composant respecte le RGAA 4.1, utilise des ES Modules et un MutationObserver pour l'auto-initialisation.</p>
+    <div class="container">
+        <header>
+            <h1>🎯 Composant Modal</h1>
+            <p>ES Module accessible conforme <strong>RGAA 4.1</strong></p>
+            <div>
+                <span class="badge">Accessibilité</span>
+                <span class="badge">Focus Trap</span>
+                <span class="badge">Vanilla JS</span>
+                <span class="badge">ES Modules</span>
+            </div>
+        </header>
 
-    <div class="demo-container">
-        <div class="controls">
-            <button class="api-btn" onclick="addTab()">Ajouter dynamiquement un composant</button>
-        </div>
-
-        <!-- Composant Tab -->
-        <div class="ds-tabs" data-ds-toggle="ds-tab" id="myTabs">
-            <div class="ds-tabs__header">
-                <button class="ds-tabs__scroll-btn ds-tabs__scroll-btn--prev" type="button" aria-label="Précédent" data-ds-tabs-scroll="prev" hidden>
-                    &lt;
-                </button>
-                <div class="ds-tabs__tablist-wrapper">
-                    <div class="ds-tabs__tablist" role="tablist" aria-label="Exemple de navigation">
-                        <button class="ds-tabs__tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">
-                            Général
-                        </button>
-                        <button class="ds-tabs__tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">
-                            Accessibilité
-                        </button>
-                        <button class="ds-tabs__tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">
-                            Performance
-                        </button>
-                        <button class="ds-tabs__tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false">
-                            Sécurité
-                        </button>
-                        <button class="ds-tabs__tab" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false">
-                            Déploiement
-                        </button>
-                        <button class="ds-tabs__tab" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false">
-                            Monitoring
-                        </button>
+        <section class="features">
+            <h2>✨ Caractéristiques</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">♿</div>
+                    <div class="feature-content">
+                        <h3>Conforme RGAA 4.1</h3>
+                        <p>Attributs ARIA complets, gestion du focus, navigation au clavier</p>
                     </div>
                 </div>
-                <button class="ds-tabs__scroll-btn ds-tabs__scroll-btn--next" type="button" aria-label="Suivant" data-ds-tabs-scroll="next" hidden>
-                    &gt;
-                </button>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-content">
+                        <h3>Focus Trap</h3>
+                        <p>Le focus reste confiné à la modale avec Tab/Shift+Tab</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⌨️</div>
+                    <div class="feature-content">
+                        <h3>Navigation Clavier</h3>
+                        <p>Fermeture par Échap, focus initial sur le bouton de fermeture</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <div class="feature-content">
+                        <h3>Vanilla JS</h3>
+                        <p>Aucune dépendance, code pur et performant</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-content">
+                        <h3>Auto-initialisation</h3>
+                        <p>MutationObserver pour l'initialisation automatique</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-content">
+                        <h3>Responsive</h3>
+                        <p>Adapté aux écrans mobiles et desktop</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="demo-grid">
+            <div class="demo-card">
+                <h2>Modal Simple</h2>
+                <p>Une modale basique avec titre, contenu et bouton de fermeture.</p>
+                <div class="button-group">
+                    <button class="btn" onclick="openSimpleModal()">Ouvrir</button>
+                </div>
             </div>
 
-            <div class="ds-tabs__panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
-                <h2>Contenu Général</h2>
-                <p>Bienvenue dans l'onglet général. Ce composant est conçu pour être hautement accessible et performant.</p>
+            <div class="demo-card">
+                <h2>Modal avec Actions</h2>
+                <p>Une modale avec des boutons d'action (Confirmer, Annuler).</p>
+                <div class="button-group">
+                    <button class="btn" onclick="openActionModal()">Ouvrir</button>
+                </div>
             </div>
-            <div class="ds-tabs__panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
-                <h2>Accessibilité (RGAA 4.1)</h2>
-                <p>Le composant gère le focus, les attributs ARIA et la navigation au clavier (flèches, Home, End).</p>
+
+            <div class="demo-card">
+                <h2>Modal avec Contenu Long</h2>
+                <p>Une modale avec scroll interne pour le contenu volumineux.</p>
+                <div class="button-group">
+                    <button class="btn" onclick="openLongContentModal()">Ouvrir</button>
+                </div>
             </div>
-            <div class="ds-tabs__panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
-                <h2>Performance</h2>
-                <p>Utilisation de Vanilla JS pur, sans dépendances lourdes. Le MutationObserver assure une initialisation efficace.</p>
+
+            <div class="demo-card">
+                <h2>Modal Dynamique</h2>
+                <p>Créer et initialiser une modale dynamiquement au runtime.</p>
+                <div class="button-group">
+                    <button class="btn" onclick="createDynamicModal()">Créer</button>
+                </div>
             </div>
-            <div class="ds-tabs__panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
-                <h2>Sécurité</h2>
-                <p>Le code suit les meilleures pratiques de développement sécurisé.</p>
+
+            <div class="demo-card">
+                <h2>Modales Imbriquées</h2>
+                <p>Ouvrir plusieurs modales l'une après l'autre.</p>
+                <div class="button-group">
+                    <button class="btn" onclick="openFirstNestedModal()">Ouvrir</button>
+                </div>
             </div>
-            <div class="ds-tabs__panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5" hidden>
-                <h2>Déploiement</h2>
-                <p>Facile à intégrer dans n'importe quel projet via ES Modules.</p>
+
+            <div class="demo-card">
+                <h2>API Programmatique</h2>
+                <p>Contrôler la modale via l'API JavaScript.</p>
+                <div class="button-group">
+                    <button class="btn btn--secondary" onclick="logModalState()">État</button>
+                    <button class="btn" onclick="openProgrammaticModal()">Ouvrir</button>
+                </div>
             </div>
-            <div class="ds-tabs__panel" id="panel-6" role="tabpanel" aria-labelledby="tab-6" hidden>
-                <h2>Monitoring</h2>
-                <p>Suivez l'utilisation de vos onglets grâce aux événements personnalisés.</p>
+        </section>
+
+        <section class="code-section">
+            <h2>📝 Utilisation</h2>
+            <div class="info-box">
+                <strong>HTML :</strong> Utilisez l'attribut <code>data-ds-toggle="ds-modal"</code> sur le conteneur
+            </div>
+            <pre><code>&lt;div class="ds-modal" data-ds-toggle="ds-modal" id="myModal"&gt;
+  &lt;div class="ds-modal__dialog" role="dialog" aria-modal="true"&gt;
+    &lt;div class="ds-modal__header"&gt;
+      &lt;h2 class="ds-modal__title" data-ds-modal-title&gt;Titre&lt;/h2&gt;
+      &lt;button class="ds-modal__close" data-ds-modal-close&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="ds-modal__body"&gt;
+      Contenu de la modale
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <div class="info-box" style="margin-top: 1.5rem;">
+                <strong>JavaScript :</strong> Importer et utiliser le composant
+            </div>
+            <pre><code>import { DsModal } from './ds-modal.js';
+
+// Initialisation automatique
+DsModal.startAutoInit();
+
+// Ou initialisation manuelle
+const modal = new DsModal(document.getElementById('myModal'));
+modal.open();
+modal.close();</code></pre>
+        </section>
+    </div>
+
+    <!-- Modal 1: Simple -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="simpleModal" hidden>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Modal Simple</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <p>Ceci est une modale simple. Vous pouvez la fermer en :</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                    <li>Cliquant sur le bouton ✕</li>
+                    <li>Appuyant sur la touche Échap</li>
+                    <li>Cliquant sur le fond gris (backdrop)</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #4b5563; font-size: 0.875rem;">
+                    <strong>Accessibilité :</strong> Utilisez Tab pour naviguer entre les éléments focusables. Le focus reste confiné à la modale.
+                </p>
             </div>
         </div>
     </div>
 
-    <div id="dynamic-container" style="margin-top: 2rem;"></div>
+    <!-- Modal 2: Avec Actions -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="actionModal" hidden data-ds-modal-backdrop-close>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Confirmez l'action</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <p>Êtes-vous sûr de vouloir continuer ?</p>
+                <p style="color: #4b5563; font-size: 0.875rem; margin-top: 1rem;">
+                    Cette action ne peut pas être annulée.
+                </p>
+            </div>
+            <div class="ds-modal__footer">
+                <button class="ds-modal__button ds-modal__button--secondary" data-ds-modal-close>Annuler</button>
+                <button class="ds-modal__button ds-modal__button--primary" onclick="confirmAction()">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Contenu Long -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="longContentModal" hidden>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Conditions d'utilisation</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <h3 style="margin-bottom: 0.5rem; font-weight: 600;">1. Introduction</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600;">2. Conditions Générales</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600;">3. Responsabilités</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600;">4. Limitation de Responsabilité</h3>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600;">5. Modifications</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+
+                <h3 style="margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600;">6. Droit Applicable</h3>
+                <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div class="ds-modal__footer">
+                <button class="ds-modal__button ds-modal__button--secondary" data-ds-modal-close>Refuser</button>
+                <button class="ds-modal__button ds-modal__button--primary" onclick="acceptTerms()">Accepter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Imbriquée 1 -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="nestedModal1" hidden>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Première Modale</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <p>Ceci est la première modale. Vous pouvez ouvrir une deuxième modale.</p>
+            </div>
+            <div class="ds-modal__footer">
+                <button class="ds-modal__button ds-modal__button--secondary" data-ds-modal-close>Fermer</button>
+                <button class="ds-modal__button ds-modal__button--primary" onclick="openSecondNestedModal()">Ouvrir la suivante</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Imbriquée 2 -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="nestedModal2" hidden>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Deuxième Modale</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <p>Ceci est la deuxième modale. Vous pouvez fermer cette modale pour revenir à la première.</p>
+                <p style="color: #4b5563; font-size: 0.875rem; margin-top: 1rem;">
+                    <strong>Note :</strong> Le focus trap fonctionne indépendamment pour chaque modale.
+                </p>
+            </div>
+            <div class="ds-modal__footer">
+                <button class="ds-modal__button ds-modal__button--primary" data-ds-modal-close>Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Programmatique -->
+    <div class="ds-modal" data-ds-toggle="ds-modal" id="programmaticModal" hidden>
+        <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+            <div class="ds-modal__header">
+                <h2 class="ds-modal__title" data-ds-modal-title>Contrôle Programmatique</h2>
+                <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+            </div>
+            <div class="ds-modal__body">
+                <p>Cette modale a été ouverte via l'API JavaScript.</p>
+                <p style="color: #4b5563; font-size: 0.875rem; margin-top: 1rem;">
+                    Consultez la console du navigateur pour voir les événements personnalisés.
+                </p>
+            </div>
+            <div class="ds-modal__footer">
+                <button class="ds-modal__button ds-modal__button--primary" data-ds-modal-close>Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Composant Modal ES Module • Conforme RGAA 4.1 • Vanilla JavaScript</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">© 2026 - Tous droits réservés</p>
+    </footer>
 
     <script type="module">
-        import { DsTabs } from '../src/ds-tabs.js';
-        
-        // Exemple d'utilisation de l'API publique
-        const tabsEl = document.getElementById('myTabs');
-        tabsEl.addEventListener('ds-tab-change', (e) => {
-            console.log('Onglet changé :', e.detail);
-        });
+        import { DsModal } from '../src/ds-modal.js';
 
-        window.addTab = function() {
-            const container = document.getElementById('dynamic-container');
-            const newTabs = document.createElement('div');
-            newTabs.className = 'ds-tabs';
-            newTabs.setAttribute('data-ds-toggle', 'ds-tab');
-            newTabs.innerHTML = `
-                <div class="ds-tabs__header">
-                    <div class="ds-tabs__tablist-wrapper">
-                        <div class="ds-tabs__tablist" role="tablist">
-                            <button class="ds-tabs__tab" role="tab" id="dyn-tab-1" aria-controls="dyn-panel-1" aria-selected="true">Dynamique 1</button>
-                            <button class="ds-tabs__tab" role="tab" id="dyn-tab-2" aria-controls="dyn-panel-2" aria-selected="false">Dynamique 2</button>
-                        </div>
+        // Fonctions pour les démos
+        window.openSimpleModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('simpleModal'));
+            if (modal) modal.open();
+        };
+
+        window.openActionModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('actionModal'));
+            if (modal) modal.open();
+        };
+
+        window.openLongContentModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('longContentModal'));
+            if (modal) modal.open();
+        };
+
+        window.openFirstNestedModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('nestedModal1'));
+            if (modal) modal.open();
+        };
+
+        window.openSecondNestedModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('nestedModal2'));
+            if (modal) modal.open();
+        };
+
+        window.openProgrammaticModal = function() {
+            const modal = DsModal.getInstance(document.getElementById('programmaticModal'));
+            if (modal) {
+                modal.open();
+                console.log('Modal ouverte via API programmatique');
+            }
+        };
+
+        window.createDynamicModal = function() {
+            const container = document.body;
+            const dynamicModal = document.createElement('div');
+            dynamicModal.className = 'ds-modal';
+            dynamicModal.setAttribute('data-ds-toggle', 'ds-modal');
+            dynamicModal.innerHTML = `
+                <div class="ds-modal__dialog" role="dialog" aria-modal="true">
+                    <div class="ds-modal__header">
+                        <h2 class="ds-modal__title" data-ds-modal-title>Modal Dynamique</h2>
+                        <button class="ds-modal__close" data-ds-modal-close aria-label="Fermer la modale">✕</button>
+                    </div>
+                    <div class="ds-modal__body">
+                        <p>Cette modale a été créée dynamiquement au runtime.</p>
+                        <p style="color: #4b5563; font-size: 0.875rem; margin-top: 1rem;">
+                            Le MutationObserver l'a détectée et initialisée automatiquement.
+                        </p>
+                    </div>
+                    <div class="ds-modal__footer">
+                        <button class="ds-modal__button ds-modal__button--primary" data-ds-modal-close>Fermer</button>
                     </div>
                 </div>
-                <div class="ds-tabs__panel" id="dyn-panel-1" role="tabpanel" aria-labelledby="dyn-tab-1">Contenu dynamique 1</div>
-                <div class="ds-tabs__panel" id="dyn-panel-2" role="tabpanel" aria-labelledby="dyn-tab-2" hidden>Contenu dynamique 2</div>
             `;
-            container.appendChild(newTabs);
-            // Le MutationObserver va l'initialiser automatiquement !
+            container.appendChild(dynamicModal);
+            
+            // La modale est automatiquement initialisée par le MutationObserver
+            setTimeout(() => {
+                const modal = DsModal.getInstance(dynamicModal);
+                if (modal) modal.open();
+            }, 100);
         };
+
+        window.logModalState = function() {
+            const modal = DsModal.getInstance(document.getElementById('programmaticModal'));
+            if (modal) {
+                console.log('État de la modale:', {
+                    isOpen: modal.isOpen(),
+                    element: modal
+                });
+            }
+        };
+
+        window.confirmAction = function() {
+            alert('Action confirmée !');
+            const modal = DsModal.getInstance(document.getElementById('actionModal'));
+            if (modal) modal.close();
+        };
+
+        window.acceptTerms = function() {
+            alert('Conditions acceptées !');
+            const modal = DsModal.getInstance(document.getElementById('longContentModal'));
+            if (modal) modal.close();
+        };
+
+        // Écouter les événements personnalisés
+        document.querySelectorAll('[data-ds-toggle="ds-modal"]').forEach(el => {
+            el.addEventListener('ds-modal-open', (e) => {
+                console.log('Modal ouverte:', e.detail);
+            });
+            el.addEventListener('ds-modal-close', (e) => {
+                console.log('Modal fermée:', e.detail);
+            });
+        });
+
+        // Ajouter un écouteur pour les modales dynamiques
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node instanceof HTMLElement && node.hasAttribute('data-ds-toggle')) {
+                        node.addEventListener('ds-modal-open', (e) => {
+                            console.log('Modal dynamique ouverte:', e.detail);
+                        });
+                        node.addEventListener('ds-modal-close', (e) => {
+                            console.log('Modal dynamique fermée:', e.detail);
+                        });
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
     </script>
 </body>
 </html>
